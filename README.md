@@ -17,13 +17,13 @@
 
 ## 📝 介绍
 
-SunsetWhere 是一个基于 AstrBot 开发的 sunsetBot数据查询插件，通过sunsetbot.top网站获取相关数据发送至聊天平台
+SunsetBotSearch 是一个基于 AstrBot 开发的 sunsetBot数据查询插件，通过sunsetbot.top网站获取相关数据发送至聊天平台
 
 ## ✨ 功能特性
 
 ### 核心功能
 
-- 查询当日/明日的朝霞晚霞数据
+- 查询当日/明日的朝霞晚霞火烧云数据
 
 ## 🚀 安装方法
 
