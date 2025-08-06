@@ -115,15 +115,15 @@ class SunsetPlugin(Star):
     async def handle_sunrise(self, event: AstrMessageEvent, city: str):
         command_name = "sunrise1"
         # 修正：使用 async for 来迭代并产生异步生成器的结果
-        self.deal_daily(city, command_name, event)
+        async for result in self._process_command(event, city, "GFS", command_name):
+            yield result
+        async for result in self._process_command(event, city, "EC", command_name):
+            yield result
+
 
     @filter.command("今天日落")
     async def handle_sunset(self, event: AstrMessageEvent, city: str):
         command_name = "sunset1"
-        self.deal_daily(city, command_name, event)
-
-    #单天数据处理
-    async def deal_daily(self, city, command_name, event):
         async for result in self._process_command(event, city, "GFS", command_name):
             yield result
         async for result in self._process_command(event, city, "EC", command_name):
@@ -132,12 +132,18 @@ class SunsetPlugin(Star):
     @filter.command("明天日出")
     async def handle_sunrise2(self, event: AstrMessageEvent, city: str):
         command_name = "sunrise2"
-        self.deal_daily(city, command_name, event)
+        async for result in self._process_command(event, city, "GFS", command_name):
+            yield result
+        async for result in self._process_command(event, city, "EC", command_name):
+            yield result
 
     @filter.command("明天日落")
     async def handle_sunset2(self, event: AstrMessageEvent, city: str):
         command_name = "sunset2"
-        self.deal_daily(city, command_name, event)
+        async for result in self._process_command(event, city, "GFS", command_name):
+            yield result
+        async for result in self._process_command(event, city, "EC", command_name):
+            yield result
 
     async def terminate(self):
         """
