@@ -58,7 +58,7 @@ class SunsetPlugin(Star):
         }
 
         full_url = f"{base_url}?{urlencode(params)}"
-        logger.info(f"插件 [sunset_info] 正在访问 URL: {full_url}")
+        logger.info(f"插件 [SunsetSearch] 正在访问 URL: {full_url}")
 
         async with self.http_session.get(base_url, params=params) as response:
             response.raise_for_status()
