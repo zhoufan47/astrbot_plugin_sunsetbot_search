@@ -1,10 +1,10 @@
 # -----------------------------------------------------------------------------
-# AstrBot SunsetWhere Sunset/Sunrise Information Plugin
+# AstrBot SunsetSearch Sunset/Sunrise Information Plugin
 #
 # 文件名: main.py
 # 功  能: 从 sunsetbot.top API 获取日出/日落等天文事件信息
-# 作  者: [请在此处填写你的名字]
-# 版  本: 1.0
+# 作  者: bbt
+# 版  本: 1.0.1
 # 依  赖: aiohttp (请确保已通过 pip install aiohttp 安装)
 # 变更(v1.0):
 # -----------------------------------------------------------------------------
@@ -21,7 +21,7 @@ from astrbot.api.star import Context, Star, register
 
 
 # 使用 @register 装饰器向 AstrBot 核心注册插件
-@register("sunset_info", "棒棒糖", "查询日出日落信息的插件", "1.0.1")
+@register("sunset_search", "棒棒糖", "查询日出日落信息的插件", "1.0.1")
 class SunsetPlugin(Star):
     """
     一个用于从 sunsetbot.top 获取日出日落等天文事件信息的插件。
@@ -29,8 +29,8 @@ class SunsetPlugin(Star):
 
     # --- 命令配置中心 ---
     COMMAND_CONFIG = {
-        "sunrise": {"event_type": "rise_1", "display_name": "日出"},
-        "sunset": {"event_type": "set_1", "display_name": "日落"},
+        "sunrise1": {"event_type": "rise_1", "display_name": "日出"},
+        "sunset1": {"event_type": "set_1", "display_name": "日落"},
         "sunrise2": {"event_type": "rise_2", "display_name": "明日日出"},
         "sunset2": {"event_type": "set_2", "display_name": "明日日落"},
     }
@@ -38,7 +38,7 @@ class SunsetPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
         self.http_session = aiohttp.ClientSession(trust_env=False)
-        logger.info("插件 [sunset_info] 已初始化。")
+        logger.info("插件 [SunsetSearch] 已初始化。")
 
     async def _query_api(self, city: str,model:str, event_type: str) -> dict:
         """
@@ -114,16 +114,16 @@ class SunsetPlugin(Star):
     @filter.command("今天日出")
     async def handle_sunrise(self, event: AstrMessageEvent, city: str):
         # 修正：使用 async for 来迭代并产生异步生成器的结果
-        async for result in self._process_command(event,city,"GFS", "sunrise"):
+        async for result in self._process_command(event,city,"GFS", "sunrise1"):
             yield result
-        async for result in self._process_command(event,city,"EC", "sunrise"):
+        async for result in self._process_command(event,city,"EC", "sunrise1"):
             yield result
 
     @filter.command("今天日落")
     async def handle_sunset(self, event: AstrMessageEvent, city: str):
-        async for result in self._process_command(event,city,"GFS", "sunset"):
+        async for result in self._process_command(event,city,"GFS", "sunset1"):
             yield result
-        async for result in self._process_command(event, city,"EC", "sunset"):
+        async for result in self._process_command(event, city,"EC", "sunset1"):
             yield result
 
     @filter.command("明天日出")
@@ -146,4 +146,4 @@ class SunsetPlugin(Star):
         """
         if self.http_session and not self.http_session.closed:
             await self.http_session.close()
-            logger.info("插件 [sunset_info] 已终止。")
+            logger.info("插件 [SunsetSearch] 已终止。")
