@@ -1,5 +1,5 @@
-name: SunsetWhere # 这是你的插件的唯一识别名。
+name: sunsetbot_search # 这是你的插件的唯一识别名。
 desc: 获取sunsetbot.top 的火烧云分析 # 插件简短描述
-version: v1.0 # 插件版本号。格式：v1.1.1 或者 v1.1
+version: v1.0.1 # 插件版本号。格式：v1.1.1 或者 v1.1
 author: 棒棒糖 # 作者
-repo: https://github.com/zhoufan47/astrbot_plugin_sunsetwhere# # 插件的仓库地址
+repo: https://github.com/zhoufan47/astrbot_plugin_sunsetbot_search # 插件的仓库地址
