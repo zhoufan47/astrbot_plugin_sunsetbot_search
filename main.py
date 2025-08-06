@@ -21,7 +21,7 @@ from astrbot.api.star import Context, Star, register
 
 
 # 使用 @register 装饰器向 AstrBot 核心注册插件
-@register("sunset_info", "你的名字", "查询日出日落信息的插件", "2.0.5")
+@register("sunset_info", "棒棒糖", "查询日出日落信息的插件", "1.0.1")
 class SunsetPlugin(Star):
     """
     一个用于从 sunsetbot.top 获取日出日落等天文事件信息的插件。
@@ -29,10 +29,10 @@ class SunsetPlugin(Star):
 
     # --- 命令配置中心 ---
     COMMAND_CONFIG = {
-        "sunrise": {"event_type": "rise_1", "display_name": "日出"},
-        "sunset": {"event_type": "set_1", "display_name": "日落"},
-        "sunrise2": {"event_type": "rise_2", "display_name": "明日日出"},
-        "sunset2": {"event_type": "set_2", "display_name": "明日日落"},
+        "今天日出": {"event_type": "rise_1", "display_name": "日出"},
+        "今天日落": {"event_type": "set_1", "display_name": "日落"},
+        "明天日出": {"event_type": "rise_2", "display_name": "明日日出"},
+        "明天日落": {"event_type": "set_2", "display_name": "明日日落"},
     }
 
     def __init__(self, context: Context):
@@ -112,7 +112,7 @@ class SunsetPlugin(Star):
     # --- 独立的命令处理器 ---
     # 每个处理器对应一个命令，然后调用核心逻辑函数
 
-    @filter.command("sunrise")
+    @filter.command("今天日出")
     async def handle_sunrise(self, event: AstrMessageEvent, city: str):
         # 修正：使用 async for 来迭代并产生异步生成器的结果
         async for result in self._process_command(event,city,"GFS", "sunrise"):
@@ -120,21 +120,21 @@ class SunsetPlugin(Star):
         async for result in self._process_command(event,city,"EC", "sunrise"):
             yield result
 
-    @filter.command("sunset")
+    @filter.command("今天日落")
     async def handle_sunset(self, event: AstrMessageEvent, city: str):
         async for result in self._process_command(event,city,"GFS", "sunset"):
             yield result
         async for result in self._process_command(event, city,"EC", "sunset"):
             yield result
 
-    @filter.command("sunrise2")
+    @filter.command("明天日出")
     async def handle_sunrise2(self, event: AstrMessageEvent, city: str):
         async for result in self._process_command(event,city,"GFS", "sunrise2"):
             yield result
         async for result in self._process_command(event,city,"EC", "sunrise2"):
             yield result
 
-    @filter.command("sunset2")
+    @filter.command("明天日落")
     async def handle_sunset2(self, event: AstrMessageEvent, city: str):
         async for result in self._process_command(event,city,"GFS", "sunset2"):
             yield result
