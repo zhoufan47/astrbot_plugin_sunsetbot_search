@@ -45,13 +45,12 @@ class SunsetPlugin(Star):
         内部函数，用于请求 sunsetbot.top API。
         """
         base_url = "https://sunsetbot.top/"
-        encoded_city = city
         event_date_param = "None"
 
         params = {
             "query_id": str(random.randint(100000, 999999)),
             "intend": "select_city",
-            "query_city": encoded_city,
+            "query_city": city,
             "event_date": event_date_param,
             "event": event_type,
             "times": "None",
