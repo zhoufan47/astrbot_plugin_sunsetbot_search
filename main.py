@@ -102,10 +102,10 @@ class SunsetPlugin(Star):
                 yield event.plain_result(error_msg + f" (城市: {city})")
 
         except aiohttp.ClientResponseError as e:
-            logger.error(f"插件 [sunset_info] 请求API时服务器返回错误: {e.status} {e.message}")
+            logger.error(f"插件 [SunsetSearch] 请求API时服务器返回错误: {e.status} {e.message}")
             yield event.plain_result(f"请求失败，服务器返回错误码：{e.status}")
         except Exception as e:
-            logger.error(f"插件 [sunset_info] 处理命令 '{command_name}' 时发生未知错误: {e}", exc_info=True)
+            logger.error(f"插件 [SunsetSearch] 处理命令 '{command_name}' 时发生未知错误: {e}", exc_info=True)
             yield event.plain_result("插件处理时发生未知错误，请联系管理员查看后台日志。")
 
     # --- 独立的命令处理器 ---
