@@ -31,7 +31,7 @@ class SunsetPlugin(Star):
     COMMAND_CONFIG = {
         "sunrise": {"event_type": "rise_1", "display_name": "日出"},
         "sunset": {"event_type": "set_1", "display_name": "日落"},
-        "sunrise1": {"event_type": "rise_2", "display_name": "明日日出"},
+        "sunrise2": {"event_type": "rise_2", "display_name": "明日日出"},
         "sunset2": {"event_type": "set_2", "display_name": "明日日落"},
     }
 
