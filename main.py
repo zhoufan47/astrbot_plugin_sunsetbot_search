@@ -29,10 +29,10 @@ class SunsetPlugin(Star):
 
     # --- 命令配置中心 ---
     COMMAND_CONFIG = {
-        "今天日出": {"event_type": "rise_1", "display_name": "日出"},
-        "今天日落": {"event_type": "set_1", "display_name": "日落"},
-        "明天日出": {"event_type": "rise_2", "display_name": "明日日出"},
-        "明天日落": {"event_type": "set_2", "display_name": "明日日落"},
+        "sunrise": {"event_type": "rise_1", "display_name": "日出"},
+        "sunset": {"event_type": "set_1", "display_name": "日落"},
+        "sunrise1": {"event_type": "rise_2", "display_name": "明日日出"},
+        "sunset2": {"event_type": "set_2", "display_name": "明日日落"},
     }
 
     def __init__(self, context: Context):
